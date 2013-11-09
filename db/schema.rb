@@ -14,42 +14,42 @@
 ActiveRecord::Schema.define(:version => 20131109204031) do
 
   create_table "comments", :force => true do |t|
-    t.string   "text"
+    t.string   "text", :null => false
     t.integer  "rating"
-    t.integer  "user_id"
-    t.integer  "post_id"
+    t.integer  "user_id", :null => false
+    t.integer  "post_id", :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "posts", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "user_id", :null => false
     t.integer  "rating"
     t.integer  "difficulty"
-    t.boolean  "isfinished"
-    t.boolean  "ispublic"
+    t.boolean  "isfinished", :null => false
+    t.boolean  "ispublic", :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "step_comments", :force => true do |t|
-    t.string   "text"
+    t.string   "text", :null => false
     t.integer  "rating"
-    t.integer  "user_id"
-    t.integer  "step_id"
+    t.integer  "user_id", :null => false
+    t.integer  "step_id", :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "steps", :force => true do |t|
     t.string   "text"
-    t.integer  "post_id"
+    t.integer  "post_id", :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
+    t.string   "username", :null => false
     t.integer  "rating"
     t.string   "password_hash"
     t.string   "password_salt"
