@@ -14,4 +14,17 @@ class CommentsController < ActionController::Base
     end
   end
 
+  def comments
+    @post = params[:post]
+    comments = @post.comments
+    cms = Hash.new
+    comments.each do |comment|
+      subhsh = Hash.new
+      subhsh[user]= comment.user
+      subhsh[text] = comment.text
+      subhsh[date] = comment.created_at
+      cms[comment.id] = subhsh
+    end
+  end
+
 end

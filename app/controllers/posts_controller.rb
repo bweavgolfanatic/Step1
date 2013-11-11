@@ -14,4 +14,36 @@ class PostsController < ActionController::Base
     end
   end
 
+  def popular
+    json_posts = Hash.new
+    Post.where("ispublic = ? AND isfinished = ?", true, true).order(num_ratings: :desc).find_each do |post|
+      json_posts[post.id] = post.title
+    end
+
+    respond_to do |format|
+      format.json {render json: json_posts}
+    end
+  end
+
+  def latest
+    json_posts = Hash.new
+    Post.where("ispublic = ? AND isfinished = ?", true, true).order(created_at: :desc).find_each do |post|
+      json_posts[post.id] = post.title
+    end
+
+    respond_to do |format|
+      format.json {render json: json_posts}
+    end
+  end
+
+  def oldest
+    json_posts = Hash.new
+    Post.where("ispublic = ? AND isfinished = ?", true, true).order(num_ratings: :asc).find_each do |post|
+      json_posts[post.id] = post.title
+    end
+
+    respond_to do |format|
+      format.json {render json: json_posts}
+    end
+  end
 end

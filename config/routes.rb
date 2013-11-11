@@ -3,9 +3,22 @@ Step1::Application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
+  get "my_info" => "users#my_info", :as => "my_info"
+  get "popular_posts" => "posts#popular", :as => "popular_posts"
+  get "latest_posts" => "posts#latest", :as => "latest_posts"
+  get "oldest_posts" => "posts#oldest", :as => "oldest_posts"
+  get "/:post/comments" => "posts#comments", :as => "post_comments"
+  get "/:step/comments" => "steps#comments", :as => "step_comments"
+
+
+
   root :to => "users#new"
   resources :users
   resources :sessions
+  resources :comments
+  resources :posts
+  resources :steps
+  resources :step_comments
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

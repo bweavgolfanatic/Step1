@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :difficulty, :isfinished, :ispublic, :rating, :user_id
+  attr_accessible :difficulty, :isfinished, :ispublic, :rating, :user_id, :num_ratings, :title
 
   has_many :steps
   has_many :comments
@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
   validates :ispublic, presence: true
   validates :isfinished, presence: true
   validates :user_id, presence: true
-
+  validates :num_ratings, presence: true
+  validates :title, presence: true
 
 end
