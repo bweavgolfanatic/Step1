@@ -7,8 +7,8 @@ Step1::Application.routes.draw do
   get "popular_posts" => "posts#popular", :as => "popular_posts"
   get "latest_posts" => "posts#latest", :as => "latest_posts"
   get "oldest_posts" => "posts#oldest", :as => "oldest_posts"
-  get "/:post/comments" => "posts#comments", :as => "post_comments"
-  get "/:step/comments" => "steps#comments", :as => "step_comments"
+  get "post_comments" => "comments#comments", :as => "post_comments"
+  get "step_comments" => "step_comments#comments", :as => "step_comments"
 
 
 

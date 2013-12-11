@@ -1,20 +1,42 @@
 class SessionsController < ApplicationController
+  skip_before_filter :signed_in_user, only: [:new,:create, :am_i_signed_in]
   def new
   end
 
   def create
-    user = User.authenticate(params[:username], params[:password])
+    user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-      redirect_to root_url, :notice => "Logged in!"
+      respond_to do |format|
+        format.json { render json: "{'message':'login successful'}"}
+        format.html { redirect_to users_path}
+      end
     else
-      flash.now.alert = "Invalid email or password"
-      render "new"
+      respond_to do |format|
+        format.json { render json: "{'message':'login unsuccessful'}"}
+      end
     end
   end
 
+  def am_i_signed_in
+    resp = Hash.new
+    if !current_user.nil?
+      resp["message"] = "signed in"
+    else
+      resp["message"] = "not signed in"
+    end
+    respond_to do |format|
+      format.json{render json: resp}
+    end
+  end
+
+
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Logged out!"
+    respond_to do |format|
+        format.json { render json: "{'message':'logged out'}"}
+        format.html {redirect_to sign_up_path}
+      end
   end
+
 end
