@@ -57,7 +57,8 @@ ActiveRecord::Schema.define(:version => 20131109212821) do
 
   create_table "users", :force => true do |t|
     t.string   "username",            :null => false
-    t.integer  "rating"
+    t.float    "rating",              :null => false
+    t.integer  "numratings",          :null => false
     t.string   "password_hash"
     t.string   "password_salt"
     t.datetime "created_at",          :null => false

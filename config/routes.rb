@@ -13,6 +13,7 @@ Step1::Application.routes.draw do
   get "am_i_signed_in" => "sessions#am_i_signed_in", :as => "am_i_signed_in"
 
 
+
   root :to => "users#new"
   resources :users
   resources :sessions

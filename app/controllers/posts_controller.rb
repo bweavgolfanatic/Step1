@@ -15,7 +15,7 @@ class PostsController < ActionController::Base
   end
 
 #  def category
-#    @posts = Post.where
+#    @posts = Post.where()
 #  end
 
   def popular
