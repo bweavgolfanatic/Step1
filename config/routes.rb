@@ -9,7 +9,7 @@ Step1::Application.routes.draw do
   get "oldest_posts" => "posts#oldest", :as => "oldest_posts"
   get "post_comments" => "comments#comments", :as => "post_comments"
   get "step_comments" => "step_comments#comments", :as => "step_comments"
-
+  get "am_i_signed_in" => "sessions#am_i_signed_in", :as => "am_i_signed_in"
 
 
   root :to => "users#new"
