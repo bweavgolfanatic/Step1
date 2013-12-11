@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20131109212821) do
   end
 
   create_table "posts", :force => true do |t|
+    t.string   "category"
     t.string   "title",      :null => false
     t.integer  "user_id",    :null => false
     t.integer  "num_ratings", :null=> false
