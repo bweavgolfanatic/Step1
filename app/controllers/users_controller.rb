@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     respond_to do |format|
-      if @picture.save
+      if @user.save
         format.json { render json: "{'message':'user created successfully'}"}
       else
         format.json { render json: "{'message':'ERROR user not created'}"}
