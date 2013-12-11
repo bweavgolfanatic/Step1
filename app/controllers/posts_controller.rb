@@ -14,6 +14,10 @@ class PostsController < ActionController::Base
     end
   end
 
+#  def category
+#    @posts = Post.where
+#  end
+
   def popular
     json_posts = Hash.new
     Post.where("ispublic = ? AND isfinished = ?", true, true).order(num_ratings: :desc).find_each do |post|
