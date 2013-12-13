@@ -3,7 +3,7 @@ Step1::Application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
-  get "my_info" => "users#my_info", :as => "my_info"
+  get "my_details" => "users#my_details", :as => "my_details"
   get "popular_posts" => "posts#popular", :as => "popular_posts"
   get "latest_posts" => "posts#latest", :as => "latest_posts"
   get "oldest_posts" => "posts#oldest", :as => "oldest_posts"
