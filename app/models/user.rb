@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  require 'bcrypt'
   attr_accessible :username, :password, :password_confirmation, :rating, :avatar, :num_ratings
   has_many :posts
   has_many :comments
@@ -38,4 +39,6 @@ class User < ActiveRecord::Base
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
+
+  
 end

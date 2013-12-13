@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
+  skip_before_filter :signed_in_user, only: [:new,:create]
   def new
     @user = User.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @user }
+    end
   end
 
   def index
     @users = User.all
+    puts current_user
+    puts "*****************"
     respond_to do |format|
       format.json { render json: @users }
     end
@@ -41,10 +49,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.rating = 0
-    respond_to do |format|
-      if @user.save
-        format.json { render json: "{'message':'user created successfully'}"}
-      else
+    @user.num_ratings = 0
+    if @user.save
+      respond_to do |format|
+        format.json { render json: "{'message':'user created successfully'}"}      
+      end
+    else
+      respond_to do |format|
         format.json { render json: "{'message':'ERROR user not created'}"}
       end
     end

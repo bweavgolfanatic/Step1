@@ -28,7 +28,7 @@ class PostsController < ActionController::Base
 
   def user_posts
     j_posts = Hash.new
-    @posts = Post.where("category = ?", params[:username]).find_each do |post|
+    @posts = Post.where("user_id = ?", User.find_by_username(params[:username])).find_each do |post|
       j_posts[post.id] = post.title
     end
 
