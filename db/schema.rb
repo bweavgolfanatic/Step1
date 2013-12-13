@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
     t.string   "username",            :null => false
     t.float    "rating",              :null => false
     t.integer  "num_ratings",         :null => false
-    t.string   "password_hash"
-    t.string   "password_salt"
+    t.string   "password_hash",       :null => false
+    t.string   "password_salt",       :null => false
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.string   "avatar_file_name"
