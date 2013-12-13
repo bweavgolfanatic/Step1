@@ -14,9 +14,16 @@ class PostsController < ActionController::Base
     end
   end
 
-#  def category
-#    @posts = Post.where()
-#  end
+  def category
+    j_posts = Hash.new
+    @posts = Post.where("category = ?", params[:username]).find_each do |post|
+      j_posts[post.id] = post.title
+    end
+
+    repond_to do |format|
+      format.json {render json: j_posts}
+    end
+  end
 
   def popular
     json_posts = Hash.new
