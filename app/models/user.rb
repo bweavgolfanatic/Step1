@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
   before_save :encrypt_password
-  after_save :make_voter
+
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
     @voter.save
   end
 
-  def self.authenticate(username, password)
-    user = find_by_username(username)
+  def self.authenticate(email, password)
+    user = find_by_username(email)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
     else

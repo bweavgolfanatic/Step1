@@ -52,7 +52,8 @@ class UsersController < ApplicationController
     @user.num_ratings = 0
     if @user.save
       respond_to do |format|
-        format.json { render json: "{'message':'user created successfully'}"}      
+        format.json { render json: "{'message':'user created successfully'}"}
+        format.html {redirect_to users_path}
       end
     else
       respond_to do |format|
