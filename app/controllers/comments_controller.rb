@@ -15,7 +15,7 @@ class CommentsController < ActionController::Base
   end
 
   def comments
-    @post = params[:post]
+    @post = Post.find(params[:post])
     comments = @post.comments
     cms = Hash.new
     comments.each do |comment|

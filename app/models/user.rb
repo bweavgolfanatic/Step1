@@ -3,9 +3,11 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :step_comments
+  has_one :voter
 
   attr_accessor :password
   before_save :encrypt_password
+  after_save :make_voter
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -14,6 +16,11 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
 
   has_attached_file :avatar
+
+  def make_voter
+    @voter = Voter.new(:user_id => current_user.id, :username => current_user.username)
+    @voter.save
+  end
 
   def self.authenticate(username, password)
     user = find_by_username(username)

@@ -5,6 +5,7 @@ class PostsController < ActionController::Base
 
   def create
     @post = Post.new(params[:post])
+    @post.user_id = current_user.id
     respond_to do |format|
       if @post.save
         format.json { render json: "{'message':'post created successfully'}"}
@@ -14,7 +15,18 @@ class PostsController < ActionController::Base
     end
   end
 
-  def category
+  def category_posts
+    j_posts = Hash.new
+    @posts = Post.where("category = ?", params[:category]).find_each do |post|
+      j_posts[post.id] = post.title
+    end
+
+    repond_to do |format|
+      format.json {render json: j_posts}
+    end
+  end
+
+  def user_posts
     j_posts = Hash.new
     @posts = Post.where("category = ?", params[:username]).find_each do |post|
       j_posts[post.id] = post.title

@@ -15,7 +15,7 @@ class Step_commentsController < ActionController::Base
   end
 
   def comments
-    @step = params[:step]
+    @step = Step.find(params[:step])
     comments = @step.comments
     cms = Hash.new
     comments.each do |comment|
