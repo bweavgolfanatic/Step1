@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
   before_save :encrypt_password
+  after_save :make_voter
 
 
   validates_confirmation_of :password
@@ -20,7 +21,10 @@ class User < ActiveRecord::Base
   has_attached_file :avatar
 
   def make_voter
-    @voter = Voter.new(:user_id => current_user.id, :username => current_user.username)
+    puts "making voter"
+    puts self.id
+    puts self.username
+    @voter = Voter.new(:user_id => self.id, :username => self.username)
     @voter.save
   end
 
