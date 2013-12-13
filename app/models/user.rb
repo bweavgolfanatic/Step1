@@ -21,9 +21,6 @@ class User < ActiveRecord::Base
   has_attached_file :avatar
 
   def make_voter
-    puts "making voter"
-    puts self.id
-    puts self.username
     @voter = Voter.new(:user_id => self.id, :username => self.username)
     @voter.save
   end
