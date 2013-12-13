@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
 
   create_table "comments", :force => true do |t|
     t.string   "text",        :null => false
-    t.integer  "rating"
+    t.integer  "rating",      :null => false
     t.integer  "num_ratings", :null => false
     t.integer  "user_id",     :null => false
     t.integer  "post_id",     :null => false
@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
   end
 
   create_table "posts", :force => true do |t|
-    t.string   "category"
+    t.string   "category",    :null => false
     t.string   "title",       :null => false
     t.integer  "user_id",     :null => false
     t.integer  "num_ratings", :null => false
-    t.integer  "rating"
-    t.integer  "difficulty"
+    t.integer  "rating",      :null => false
+    t.integer  "difficulty",  :null => false
     t.boolean  "isfinished",  :null => false
     t.boolean  "ispublic",    :null => false
     t.datetime "created_at",  :null => false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
 
   create_table "step_comments", :force => true do |t|
     t.string   "text",        :null => false
-    t.integer  "rating"
+    t.integer  "rating",      :null => false
     t.integer  "num_ratings", :null => false
     t.integer  "user_id",     :null => false
     t.integer  "step_id",     :null => false
@@ -59,7 +59,8 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
 
   create_table "users", :force => true do |t|
     t.string   "username",            :null => false
-    t.float    "rating"
+    t.float    "rating",              :null => false
+    t.integer  "num_ratings",         :null => false
     t.string   "password_hash"
     t.string   "password_salt"
     t.datetime "created_at",          :null => false

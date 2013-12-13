@@ -3,13 +3,16 @@ class Post < ActiveRecord::Base
 
   has_many :steps
   has_many :comments
+  has_many :voters
   belongs_to :user
 
+  validates :category, presence: true
   validates :difficulty, presence: true
   validates :ispublic, presence: true
   validates :isfinished, presence: true
   validates :user_id, presence: true
   validates :num_ratings, presence: true
   validates :title, presence: true
+  validates :rating, presence: true
 
 end

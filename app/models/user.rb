@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :password, :password_confirmation, :rating, :avatar
+  attr_accessible :username, :password, :password_confirmation, :rating, :avatar, :num_ratings
   has_many :posts
   has_many :comments
   has_many :step_comments
@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_presence_of :username
   validates_presence_of :rating
+  validates :num_ratings, :presence => true
   validates_uniqueness_of :username
 
   has_attached_file :avatar
