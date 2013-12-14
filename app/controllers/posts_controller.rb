@@ -5,7 +5,7 @@ class PostsController < ActionController::Base
 
   def create
     @post = Post.new(params[:post])
-    @post.user_id = whos_signed_in.id
+    @post.user_id = User.find(session[:user_id]) if session[:user_id].id
     @post.rating = 0.0
     @post.num_ratings = 0
     @post.isfinished = false
