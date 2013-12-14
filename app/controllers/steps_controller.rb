@@ -13,10 +13,13 @@ class StepsController < ActionController::Base
 
   def show
     @step = Step.find(params[:id])
+    hsh = Hash.new
+    hsh['path']= @step.picture.path
+    hsh['text'] = @step.text
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @step }
+      format.json { render json: hsh }
     end
   end
 
