@@ -100,7 +100,7 @@ class PostsController < ActionController::Base
 
   def oldest
     json_posts = Hash.new
-    Post.where("ispublic = ? AND isfinished = ?", true, true).order(num_ratings: :asc).find_each do |post|
+    Post.where("ispublic = ? AND isfinished = ?", true, true).order(created_at :asc).find_each do |post|
       json_posts[post.id] = post.title
     end
 
