@@ -10,6 +10,16 @@ class StepsController < ActionController::Base
     end
   end
 
+
+  def show
+    @step = Step.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @step }
+    end
+  end
+
   def create
     @step = Step.new
     @step.text = params[:text]
