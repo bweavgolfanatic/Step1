@@ -18,9 +18,11 @@ class PostsController < ActionController::Base
     @post.num_ratings = 0
     @post.isfinished = 0
     @post.difficulty = params[:difficulty]
-    @post.ispublic = params[:ispublic]
+    @post.ispublic = params[:ispublic].to_i
     @post.title = params[:title]
     @post.category = params[:category]
+    puts params[:ispublic]
+    puts @post.isfinished
     respond_to do |format|
       if @post.save
         format.json { render json: "{'message':'post created successfully'}"}
