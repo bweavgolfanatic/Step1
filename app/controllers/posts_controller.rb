@@ -20,7 +20,7 @@ class PostsController < ActionController::Base
     @post.difficulty = params[:difficulty].to_i
     if @post.difficulty > 10
       @post.difficulty = 10
-    else if @post.difficulty < 1
+    elsif @post.difficulty < 1
         @post.difficult = 1
     end
     @post.ispublic = params[:ispublic].to_i
