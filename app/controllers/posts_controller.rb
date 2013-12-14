@@ -86,7 +86,7 @@ class PostsController < ActionController::Base
 
   def popular
     json_posts = Hash.new
-    Post.where("ispublic = ? AND isfinished = ?", true, true).order(num_ratings: :desc).find_each do |post|
+    Post.where("ispublic = ? AND isfinished = ?", 1, 1).order(num_ratings: :desc).find_each do |post|
       json_posts[post.id] = post.title
     end
 
@@ -97,7 +97,7 @@ class PostsController < ActionController::Base
 
   def latest
     json_posts = Hash.new
-    Post.where("ispublic = ? AND isfinished = ?", true, true).order(created_at: :desc).find_each do |post|
+    Post.where("ispublic = ? AND isfinished = ?", 1, 1).order(created_at: :desc).find_each do |post|
       json_posts[post.id] = post.title
     end
 
@@ -108,7 +108,7 @@ class PostsController < ActionController::Base
 
   def oldest
     json_posts = Hash.new
-    Post.where("ispublic = ? AND isfinished = ?", true, true).order(created_at :asc).find_each do |post|
+    Post.where("ispublic = ? AND isfinished = ?", 1, 1).order(created_at :asc).find_each do |post|
       json_posts[post.id] = post.title
     end
 
