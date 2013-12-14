@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
     t.integer  "num_ratings", :null => false
     t.integer  "rating",      :null => false
     t.integer  "difficulty",  :null => false
-    t.boolean  "isfinished",  :null => false
-    t.boolean  "ispublic",    :null => false
+    t.integer  "isfinished",  :null => false
+    t.integer  "ispublic",    :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

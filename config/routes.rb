@@ -17,6 +17,7 @@ Step1::Application.routes.draw do
   get "rate_comment" => "comments#rate_comment", :as => "rate_comment"
   get "rate_step_comment" => "step_comments#rate_step_comment", :as => "rate_step_comment"
   get "rate_post" => "posts#rate_post", :as => "rate_post"
+  get "posts/:ispublic/:category/:title/:difficulty" => "posts#create"
 
 
 

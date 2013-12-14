@@ -3,16 +3,29 @@ class PostsController < ActionController::Base
     @post = Post.new
   end
 
+  def index
+    @posts = Post.all
+    respond_to do |format|
+      format.json { render json: @posts }
+    end
+  end
+
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new
     @post.user_id = (User.find(session[:user_id]) if session[:user_id]).id
+    puts @post.user_id
     @post.rating = 0.0
     @post.num_ratings = 0
-    @post.isfinished = false
+    @post.isfinished = 0
+    @post.difficulty = params[:difficulty]
+    @post.ispublic = params[:ispublic]
+    @post.title = params[:title]
+    @post.category = params[:category]
     respond_to do |format|
       if @post.save
         format.json { render json: "{'message':'post created successfully'}"}
       else
+        puts @post.errors.messages.inspect
         format.json { render json: "{'message':'ERROR post not created'}"}
       end
     end
