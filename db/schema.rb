@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
   end
 
   create_table "steps", :force => true do |t|
-    t.string   "text"
+    t.string   "text",                 :null => false
     t.integer  "post_id",              :null => false
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false

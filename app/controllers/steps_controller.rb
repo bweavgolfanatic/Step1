@@ -4,7 +4,10 @@ class StepsController < ActionController::Base
   end
 
   def create
-    @step = Step.new(params[:step])
+    @step = Step.new
+    @step.text = params[:text]
+    @step.post_id = params[:post_id]
+    @step.picture = params[:picture]
     respond_to do |format|
       if @step.save
         format.json { render json: "{'message':'step created successfully'}"}
