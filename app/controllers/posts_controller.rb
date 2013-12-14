@@ -79,7 +79,7 @@ class PostsController < ActionController::Base
       j_posts[post.id] = post.title
     end
 
-    repond_to do |format|
+    respond_to do |format|
       format.json {render json: j_posts}
     end
   end
