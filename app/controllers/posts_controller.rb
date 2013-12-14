@@ -18,6 +18,11 @@ class PostsController < ActionController::Base
     @post.num_ratings = 0
     @post.isfinished = 0
     @post.difficulty = params[:difficulty].to_i
+    if @post.difficulty > 10
+      @post.difficulty = 10
+    else if @post.difficulty < 1
+        @post.difficult = 1
+    end
     @post.ispublic = params[:ispublic].to_i
     @post.title = params[:title]
     @post.category = params[:category]
