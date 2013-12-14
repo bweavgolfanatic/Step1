@@ -10,7 +10,7 @@ Step1::Application.routes.draw do
   get "popular_posts" => "posts#popular", :as => "popular_posts"
   get "latest_posts" => "posts#latest", :as => "latest_posts"
   get "oldest_posts" => "posts#oldest", :as => "oldest_posts"
-  get "catgory_posts" => "posts#category_posts", :as => "category_posts"
+  get "category_posts" => "posts#category_posts", :as => "category_posts"
   get "post_comments" => "comments#comments", :as => "post_comments"
   get "step_comments" => "step_comments#comments", :as => "step_comments"
   get "am_i_signed_in" => "sessions#am_i_signed_in", :as => "am_i_signed_in"
