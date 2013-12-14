@@ -11,6 +11,7 @@ class PostsController < ActionController::Base
   end
 
   def create
+    hsh = Hash.new
     @post = Post.new
     @post.user_id = (User.find(session[:user_id]) if session[:user_id]).id
     puts @post.user_id
@@ -30,7 +31,9 @@ class PostsController < ActionController::Base
     puts @post.isfinished
     respond_to do |format|
       if @post.save
-        format.json { render json: "{'message':'post created successfully'}"}
+        hsh['message'] = 'post created successfully'
+        hsh['postid'] = @post.id
+        format.json { render json: hsh}
       else
         puts @post.errors.messages.inspect
         format.json { render json: "{'message':'ERROR post not created'}"}
