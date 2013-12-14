@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
+include SessionsHelper
 before_filter :signed_in_user
 helper_method :current_user
-include SessionsHelper
-
 
 private
 
