@@ -6,6 +6,9 @@ class PostsController < ActionController::Base
   def create
     @post = Post.new(params[:post])
     @post.user_id = current_user.id
+    @post.rating = 0.0
+    @post.num_ratings = 0
+    @post.isfinished = false
     respond_to do |format|
       if @post.save
         format.json { render json: "{'message':'post created successfully'}"}
@@ -13,6 +16,27 @@ class PostsController < ActionController::Base
         format.json { render json: "{'message':'ERROR post not created'}"}
       end
     end
+  end
+
+  def rate_post
+    @post = Post.find(params[:post])
+    value = @post.rating * @post.num_ratings
+    value += params[:rating]
+    @post.num_ratings += 1
+    @post.rating = value / @post.num_ratings
+    respond_to do |format|
+      if @post.save
+        @votee = @post.user
+        total = @votee.rating * @votee.num_ratings
+        @votee.num_ratings += 1
+        @votee.rating = total / @votee.num_ratings
+        @votee.save
+        format.json { render json: "{'message':'comment rated successfully'}"}
+      else
+        format.json { render json: "{'message':'ERROR comment not rated'}"}
+      end
+    end
+
   end
 
   def category_posts

@@ -5,6 +5,9 @@ class CommentsController < ActionController::Base
 
   def create
     @comment = Comment.new(params[:comment])
+    @comment.num_ratings = 0
+    @comment.rating = 0.0
+    @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
         format.json { render json: "{'message':'comment created successfully'}"}
@@ -15,13 +18,18 @@ class CommentsController < ActionController::Base
   end
 
   def rate_comment
-    @comment = params[:comment]
+    @comment = Comment.find(params[:comment])
     value = @comment.rating * @comment.num_ratings
     value += params[:rating]
     @comment.num_ratings += 1
     @comment.rating = value / @comment.num_ratings
     respond_to do |format|
       if @comment.save
+        @votee = @comment.user
+        total = @votee.rating * @votee.num_ratings
+        @votee.num_ratings += 1
+        @votee.rating = total / @votee.num_ratings
+        @votee.save
         format.json { render json: "{'message':'comment rated successfully'}"}
       else
         format.json { render json: "{'message':'ERROR comment not rated'}"}

@@ -15,6 +15,8 @@ Step1::Application.routes.draw do
   get "step_comments" => "step_comments#comments", :as => "step_comments"
   get "am_i_signed_in" => "sessions#am_i_signed_in", :as => "am_i_signed_in"
   get "rate_comment" => "comments#rate_comment", :as => "rate_comment"
+  get "rate_step_comment" => "step_comments#rate_step_comment", :as => "rate_step_comment"
+  get "rate_post" => "posts#rate_post", :as => "rate_post"
 
 
 
