@@ -3,6 +3,13 @@ class StepsController < ActionController::Base
     @step = Step.new
   end
 
+  def index
+    @steps = Step.all
+    respond_to do |format|
+      format.json { render json: @steps }
+    end
+  end
+
   def create
     @step = Step.new
     @step.text = params[:text]
@@ -12,6 +19,7 @@ class StepsController < ActionController::Base
       if @step.save
         format.json { render json: "{'message':'step created successfully'}"}
       else
+        puts @step.errors.messages.inspect
         format.json { render json: "{'message':'ERROR step not created'}"}
       end
     end
