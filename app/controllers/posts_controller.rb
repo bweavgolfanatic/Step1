@@ -8,7 +8,7 @@ class PostsController < ActionController::Base
     puts "****************"
     puts current_user
     puts "****************"
-    @post.user_id = current_user.id
+    @post.user_id = whos_signed_in.id
     @post.rating = 0.0
     @post.num_ratings = 0
     @post.isfinished = false
