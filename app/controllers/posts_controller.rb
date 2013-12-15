@@ -135,7 +135,7 @@ class PostsController < ActionController::Base
 
   def latest
     json_posts = Hash.new
-    Post.where("ispublic = ?", 1).order(id: :desc).find_each do |post|
+    Post.where("ispublic = ?", 1).order(created_at: :desc).each do |post|
       json_posts[post.id] = post.title
     end
 
@@ -146,7 +146,7 @@ class PostsController < ActionController::Base
 
   def oldest
     json_posts = Hash.new
-    Post.where("ispublic = ?", 1).order(id: :asc).find_each do |post|
+    Post.where("ispublic = ?", 1).order(created_at: :asc).each do |post|
       json_posts[post.id] = post.title
     end
 
