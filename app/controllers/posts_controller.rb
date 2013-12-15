@@ -134,9 +134,12 @@ class PostsController < ActionController::Base
   end
 
   def latest
+    i = 1
     json_posts = Hash.new
     Post.where("ispublic = ?", 1).order("id desc").each do |post|
       json_posts[post.id] = post.title
+      i += 1
+
     end
 
     respond_to do |format|
@@ -145,9 +148,11 @@ class PostsController < ActionController::Base
   end
 
   def oldest
+    i = 1
     json_posts = Hash.new
     Post.where("ispublic = ?", 1).order("id asc").each do |post|
-      json_posts[post.id] = post.title
+      json_posts[i] = post.title
+      i+= 1
     end
 
     respond_to do |format|
