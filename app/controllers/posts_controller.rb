@@ -13,7 +13,7 @@ class PostsController < ActionController::Base
   def search_posts
     msg = Hash.new
     Post.find_each do |post|
-      if post.include? params[:search]
+      if post.title.include? params[:search]
         msg[post.id] = post.title
       end
     end
