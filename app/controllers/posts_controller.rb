@@ -125,7 +125,7 @@ class PostsController < ActionController::Base
   def popular
     i = 1
     json_posts = Hash.new
-    Post.where("ispublic = ?", 1).order(num_ratings: :desc).find_each do |post|
+    Post.where("ispublic = ?", 1).order("num_ratings desc").each do |post|
       json_posts[i] = post.title
       i +=1
     end
@@ -138,7 +138,7 @@ class PostsController < ActionController::Base
   def latest
     i = 1
     json_posts = Hash.new
-    @posts = Post.where("ispublic = ?", 1).order("id desc").find_each do |post|
+    @posts = Post.where("ispublic = ?", 1).order("id desc").each do |post|
       json_posts[i] = post.title
       i += 1
 
@@ -152,7 +152,7 @@ class PostsController < ActionController::Base
   def oldest
     i = 1
     json_posts = Hash.new
-    Post.where("ispublic = ?", 1).order("id asc").find_each do |post|
+    Post.where("ispublic = ?", 1).order("id asc").each do |post|
       json_posts[i] = post.title
       i+= 1
     end
