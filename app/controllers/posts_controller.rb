@@ -11,7 +11,7 @@ class PostsController < ActionController::Base
   end
 
   def getapost
-    @post = Post.find(params[:title])
+    @post = Post.find_by_title(params[:title])
     respond_to do |format|
       
       format.json { render json: @post }
