@@ -47,6 +47,7 @@ class PostsController < ActionController::Base
     msg['rating']=@post.rating
     msg['title']=@post.title
     if !@post.steps.nil?
+      puts @post.steps.count
       msg['first_step_id'] = @post.steps.first.id
       msg['num_steps']=@post.steps.count
     else
