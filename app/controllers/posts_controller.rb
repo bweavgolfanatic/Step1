@@ -48,7 +48,7 @@ class PostsController < ActionController::Base
     msg['title']=@post.title
     if Step.where("post_id =?", @post.id).count > 0
       puts @post.steps.count
-      msg['first_step_id'] = Step.where("post_id = ?", @post.id).order("id ASC").first
+      msg['first_step_id'] = Step.where("post_id = ?", @post.id).order("id ASC").first.id
       msg['num_steps']=@post.steps.count
     else
       msg['first_step_id'] = -5
