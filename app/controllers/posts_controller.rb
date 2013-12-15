@@ -11,7 +11,7 @@ class PostsController < ActionController::Base
   end
 
   def setfinished
-    @post = Post.find(params[:post])
+    @post = Post.find(params[:post_id])
     @post.isfinished = 1
     if @post.save
       respond_to do |format|
