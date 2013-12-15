@@ -46,8 +46,13 @@ class PostsController < ActionController::Base
     msg['difficulty']=@post.difficulty
     msg['rating']=@post.rating
     msg['title']=@post.title
-    msg['first_step_id'] = @post.steps.first.id
-    msg['num_steps']=@post.steps.count
+    if !@post.steps.nil?
+      msg['first_step_id'] = @post.steps.first.id
+      msg['num_steps']=@post.steps.count
+    else
+      msg['first_step_id'] = -5
+      msg['num_steps'] = -5
+    end
     respond_to do |format|
       
       format.json { render json: msg }
