@@ -47,6 +47,7 @@ class PostsController < ActionController::Base
     msg['rating']=@post.rating
     msg['title']=@post.title
     msg['first_step_id'] = Step.find_by post_id: @post.id
+    msg['num_steps']=@post.steps.count
     respond_to do |format|
       
       format.json { render json: msg }
