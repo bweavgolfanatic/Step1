@@ -10,6 +10,21 @@ class PostsController < ActionController::Base
     end
   end
 
+  def setfinished
+    @post = Post.find(params[:post])
+    @post.isfinished = 1
+    if @post.save
+      respond_to do |format|
+        format.json{render json: "finished"}
+      end
+    else
+      respond_to do |format|
+        format.json{render json: "error"}
+        
+      end
+    end
+  end
+
   def getapost
     @post = Post.find_by_title(params[:title])
     respond_to do |format|

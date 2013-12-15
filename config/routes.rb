@@ -19,6 +19,7 @@ Step1::Application.routes.draw do
   get "rate_post" => "posts#rate_post", :as => "rate_post"
   get "posts/:ispublic/:category/:title/:difficulty" => "posts#create"
   get "getapost" => "posts#getapost", :as => "getapost"
+  get "setfinished" => "posts#setfinished", :as => "setfinished"
 
 
 
