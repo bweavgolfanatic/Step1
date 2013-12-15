@@ -11,15 +11,18 @@ class PostsController < ActionController::Base
   end
 
   def setfinished
+    msg = Hash.new
     @post = Post.find(params[:post_id])
     @post.isfinished = 1
     if @post.save
+      msg["message"] = "finished"
       respond_to do |format|
-        format.json{render json: "finished"}
+        format.json{render json: msg}
       end
     else
+      msg["message"]="error"
       respond_to do |format|
-        format.json{render json: "error"}
+        format.json{render json: msg}
         
       end
     end
