@@ -136,8 +136,8 @@ class PostsController < ActionController::Base
   def latest
     i = 1
     json_posts = Hash.new
-    Post.where("ispublic = ?", 1).order("id desc").each do |post|
-      json_posts[post.id] = post.title
+    @posts = Post.where("ispublic = ?", 1).order("id desc").each do |post|
+      json_posts[i] = post.title
       i += 1
 
     end
