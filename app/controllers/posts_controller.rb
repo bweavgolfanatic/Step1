@@ -10,8 +10,8 @@ class PostsController < ActionController::Base
     end
   end
 
-  def show
-    @post = Post.find(params[:id])
+  def getapost
+    @post = Post.find(params[:nickname])
     respond_to do |format|
       
       format.json { render json: @post }
