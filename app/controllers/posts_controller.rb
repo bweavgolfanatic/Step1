@@ -46,7 +46,7 @@ class PostsController < ActionController::Base
     msg['difficult']=@post.difficulty
     msg['rating']=@post.rating
     msg['title']=@post.title
-    msg['first_step_id'] = Step.find_by post_id: @post.id
+    msg['first_step_id'] = @post.steps.first.id
     msg['num_steps']=@post.steps.count
     respond_to do |format|
       
