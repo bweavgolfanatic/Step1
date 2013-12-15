@@ -10,6 +10,14 @@ class PostsController < ActionController::Base
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      
+      format.json { render json: @post }
+    end
+  end
+
   def create
     hsh = Hash.new
     @post = Post.new
@@ -22,7 +30,7 @@ class PostsController < ActionController::Base
     if @post.difficulty > 10
       @post.difficulty = 10
     elsif @post.difficulty < 1
-        @post.difficult = 1
+        @post.difficulty = 1
     end
     @post.ispublic = params[:ispublic].to_i
     @post.title = params[:title]
