@@ -14,7 +14,7 @@ class StepsController < ActionController::Base
   def show
     @step = Step.find(params[:id])
     hsh = Hash.new
-    hsh['path']= @step.picture
+    hsh['picture']= @step.picture
     hsh['text'] = @step.text
 
     respond_to do |format|

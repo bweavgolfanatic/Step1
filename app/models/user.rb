@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   validates :num_ratings, :presence => true
   validates_uniqueness_of :username
 
-  has_attached_file :avatar
 
   def make_voter
     @voter = Voter.new(:user_id => self.id, :username => self.username)

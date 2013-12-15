@@ -6,5 +6,4 @@ class Step < ActiveRecord::Base
   has_many :step_comments
   belongs_to :post
 
-  has_attached_file :picture
 end

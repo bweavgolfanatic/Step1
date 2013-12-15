@@ -26,7 +26,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'paperclip', '~> 3.0'
 gem 'bcrypt-ruby'
 
 # To use ActiveModel has_secure_password
