@@ -41,10 +41,15 @@ class PostsController < ActionController::Base
   end
 
   def getapost
+    msg = Hash.new
     @post = Post.find_by_title(params[:title])
+    msg['difficult']=@post.difficulty
+    msg['rating']=@post.rating
+    msg['title']=@post.title
+    msg['first_step_id'] = Step.find_by post_id: @post.id
     respond_to do |format|
       
-      format.json { render json: @post }
+      format.json { render json: msg }
     end
   end
 
