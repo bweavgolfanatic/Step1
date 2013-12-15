@@ -10,6 +10,18 @@ class PostsController < ActionController::Base
     end
   end
 
+  def search_posts
+    msg = Hash.new
+    Post.find_each do |post|
+      if post.include? params[:search]
+        msg[post.id] = post.title
+      end
+    end
+    respond_to do |format|
+      format.json {render json: msg}
+    end
+  end
+
   def setfinished
     msg = Hash.new
     @post = Post.find(params[:post_id])
