@@ -11,7 +11,7 @@ class PostsController < ActionController::Base
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:title])
     respond_to do |format|
       
       format.json { render json: @post }
