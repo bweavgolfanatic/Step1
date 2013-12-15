@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
     t.integer  "post_id",              :null => false
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
-    t.bytea    "picture"
+    t.binary    "pic",              :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -60,9 +60,10 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
     t.integer  "num_ratings",         :null => false
     t.string   "password_hash",       :null => false
     t.string   "password_salt",       :null => false
+    t.binary    "avatar"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.bytea    "avatar"
+    
   end
 
   create_table "voters", :force => true do |t|

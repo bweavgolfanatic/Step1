@@ -14,7 +14,7 @@ class StepsController < ActionController::Base
   def show
     @step = Step.find(params[:id])
     hsh = Hash.new
-    hsh['picture']= @step.picture
+    hsh['picture']= @step.pic
     hsh['text'] = @step.text
 
     respond_to do |format|
@@ -27,7 +27,7 @@ class StepsController < ActionController::Base
     @step = Step.new
     @step.text = params[:text]
     @step.post_id = params[:post_id]
-    @step.picture = params[:picture]
+    @step.pic = params[:pic]
     respond_to do |format|
       if @step.save
         format.json { render json: "{'message':'step created successfully'}"}
