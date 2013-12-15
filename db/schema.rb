@@ -51,10 +51,7 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
     t.integer  "post_id",              :null => false
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.bytea    "picture"
   end
 
   create_table "users", :force => true do |t|
@@ -65,10 +62,7 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
     t.string   "password_salt",       :null => false
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.bytea    "avatar"
   end
 
   create_table "voters", :force => true do |t|
