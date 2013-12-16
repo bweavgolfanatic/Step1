@@ -13,7 +13,7 @@ class PostsController < ActionController::Base
   def search_posts
     msg = Hash.new
     Post.find_each do |post|
-      if post.title.include? params[:search]
+      if post.title.include? params[:search] and post.ispublic == 1 and post.isfinished == 1
         msg[post.id] = post.title
       end
     end
@@ -114,7 +114,7 @@ class PostsController < ActionController::Base
 
   def category_posts
     j_posts = Hash.new
-    @posts = Post.where("category = ?", params[:category]).find_each do |post|
+    @posts = Post.where("category = ? AND ispublic = ? AND isfinished = ?", params[:category],1,1).find_each do |post|
       j_posts[post.id] = post.title
     end
 
@@ -126,7 +126,19 @@ class PostsController < ActionController::Base
   def user_posts
     j_posts = Hash.new
     puts params[:username]
-    @posts = Post.where("user_id = ?", User.find_by_username(params[:username]).id).find_each do |post|
+    @posts = Post.where("user_id = ? AND ispublic = ? AND isfinished = ?", User.find_by_username(params[:username]).id,1,1).find_each do |post|
+      j_posts[post.id] = post.title
+    end
+
+    respond_to do |format|
+      format.json {render json: j_posts}
+    end
+  end
+
+  def my_posts
+    j_posts = Hash.new
+    puts params[:username]
+    @posts = Post.where("user_id = ? AND isfinished = ?", User.find_by_username(params[:username]).id,1).find_each do |post|
       j_posts[post.id] = post.title
     end
 
@@ -138,7 +150,7 @@ class PostsController < ActionController::Base
   def popular
     i = 1
     json_posts = Hash.new
-    Post.where("ispublic = ?", 1).order("num_ratings desc").each do |post|
+    Post.where("ispublic = ? AND isfinished = ?", 1,1).order("num_ratings desc").each do |post|
       json_posts[i] = post.title
       i +=1
     end
@@ -151,7 +163,7 @@ class PostsController < ActionController::Base
   def latest
     i = 1
     json_posts = Hash.new
-    @posts = Post.where("ispublic = ?", 1).order("id desc").each do |post|
+    @posts = Post.where("ispublic = ? AND isfinished = ?",1, 1).order("id desc").each do |post|
       json_posts[i] = post.title
       i += 1
 
@@ -165,7 +177,7 @@ class PostsController < ActionController::Base
   def oldest
     i = 1
     json_posts = Hash.new
-    Post.where("ispublic = ?", 1).order("id asc").each do |post|
+    Post.where("ispublic = ? AND isfinished = ?",1, 1).order("id asc").each do |post|
       json_posts[i] = post.title
       i+= 1
     end

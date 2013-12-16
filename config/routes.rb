@@ -7,6 +7,7 @@ Step1::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   get "my_details" => "users#my_details", :as => "my_details"
   get "user_posts" => "posts#user_posts", :as => "user_posts"
+  get "my_posts" => "posts#my_posts", :as => "my_posts"
   get "popular_posts" => "posts#popular", :as => "popular_posts"
   get "latest_posts" => "posts#latest", :as => "latest_posts"
   get "oldest_posts" => "posts#oldest", :as => "oldest_posts"
