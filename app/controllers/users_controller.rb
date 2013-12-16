@@ -58,6 +58,7 @@ class UsersController < ApplicationController
   def my_messages
     @user = (User.find(session[:user_id]) if session[:user_id])
     @messages = @user.received_messages
+    puts @messages.length
     
     respond_to do |format|
       format.json{render json: @messages}
