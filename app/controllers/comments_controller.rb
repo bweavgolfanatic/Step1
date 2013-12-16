@@ -49,6 +49,11 @@ class CommentsController < ActionController::Base
       subhsh[date] = comment.created_at
       cms[comment.id] = subhsh
     end
+    respond_to do |format|
+      format.json { render json: cms}
+    end
+
+
   end
 
 end
