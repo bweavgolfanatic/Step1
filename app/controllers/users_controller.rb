@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     puts @message
     
     respond_to do |format|
-      format.json{render json: @messages}
+      format.json{render json: @message}
     end
 
   end
