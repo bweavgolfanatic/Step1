@@ -4,7 +4,9 @@ class CommentsController < ActionController::Base
   end
 
   def create
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new
+    @comment.text = params[:text]
+    @comment.post_id = Post.find_by_title(params[:post_title]).id
     @comment.num_ratings = 0
     @comment.rating = 0.0
     @comment.user_id = current_user.id
