@@ -1,4 +1,4 @@
-class Step_commentsController < ActionController::Base
+class StepCommentsController < ActionController::Base
   def new
     @step_comment = Step_comment.new
   end
