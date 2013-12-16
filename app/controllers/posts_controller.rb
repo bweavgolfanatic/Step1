@@ -99,7 +99,7 @@ class PostsController < ActionController::Base
     @post.rating = value / @post.num_ratings
     respond_to do |format|
       if @post.save
-        @votee = @post.user
+        @votee = User.find(@post.user_id)
         total = @votee.rating * @votee.num_ratings
         @votee.num_ratings += 1
         @votee.rating = total / @votee.num_ratings

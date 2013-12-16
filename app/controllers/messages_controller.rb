@@ -29,7 +29,7 @@ class MessagesController < ApplicationController
   end
 
   def my_messages
-    @messages = Message.where("recipient = ?",(User.find(session[:user_id]) if session[:user_id]).id).all
+    @messages = Message.where("recipient = ?",session[:user_id]).all
     puts @messages
     respond_to do |format|
       format.json {render json: @messages}
