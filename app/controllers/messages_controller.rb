@@ -1,5 +1,12 @@
 class MessagesController < ApplicationController
 
+  def index
+    @messages = Message.all
+    respond_to do |format|
+      format.json { render json: @messages }
+    end
+  end
+
   def send_message
     puts params[:body]
     puts params[:subject]
@@ -23,6 +30,7 @@ class MessagesController < ApplicationController
 
   def my_messages
     @messages = Message.where("recipient = ?",(User.find(session[:user_id]) if session[:user_id]).id).all
+    puts @messages
     respond_to do |format|
       format.json {render json: @messages}
     end
