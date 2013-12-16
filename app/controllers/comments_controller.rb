@@ -46,9 +46,9 @@ class CommentsController < ActionController::Base
     cms = Hash.new
     comments.each do |comment|
       subhsh = Hash.new
-      subhsh[user]= comment.user
-      subhsh[text] = comment.text
-      subhsh[date] = comment.created_at
+      subhsh["user"]= comment.user
+      subhsh["text"] = comment.text
+      subhsh["date"] = comment.created_at
       cms[comment.id] = subhsh
     end
     respond_to do |format|
