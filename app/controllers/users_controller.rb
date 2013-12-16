@@ -52,10 +52,8 @@ class UsersController < ApplicationController
   def my_messages
     puts Message.first
     @user = (User.find(session[:user_id]) if session[:user_id])
-    @messages = @user.received_messages
-    puts @messages
-    puts Message.first.recipient_id
-    puts Message.first.body
+    @message = Message.read_message(1, @user)
+    puts @message
     
     respond_to do |format|
       format.json{render json: @messages}
