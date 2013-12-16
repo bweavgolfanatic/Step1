@@ -92,7 +92,7 @@ class PostsController < ActionController::Base
   end
 
   def rate_post
-    @post = Post.find(params[:post])
+    @post = Post.find_by_title(params[:post])
     value = @post.rating * @post.num_ratings
     value += params[:rating]
     @post.num_ratings += 1
@@ -104,7 +104,7 @@ class PostsController < ActionController::Base
         @votee.num_ratings += 1
         @votee.rating = total / @votee.num_ratings
         @votee.save
-        format.json { render json: "{'message':'comment rated successfully'}"}
+        format.json { render json: "{'message':'post rated successfully'}"}
       else
         format.json { render json: "{'message':'ERROR comment not rated'}"}
       end
