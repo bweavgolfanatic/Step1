@@ -27,6 +27,7 @@ end
 
 gem 'jquery-rails'
 gem 'bcrypt-ruby'
+gem 'simple-private-messages', '0.0.0', :git => 'git://github.com/jongilbraith/simple-private-messages.git'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

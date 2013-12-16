@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131213184928) do
+ActiveRecord::Schema.define(:version => 20131216045018) do
 
   create_table "comments", :force => true do |t|
     t.string   "text",        :null => false
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
     t.integer  "post_id",     :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.boolean  "sender_deleted",    :default => false
+    t.boolean  "recipient_deleted", :default => false
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "read_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "posts", :force => true do |t|
@@ -47,28 +59,27 @@ ActiveRecord::Schema.define(:version => 20131213184928) do
   end
 
   create_table "steps", :force => true do |t|
-    t.string   "text",                 :null => false
-    t.integer  "post_id",              :null => false
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
-    t.binary    "pic",              :null => false
+    t.string   "text",       :null => false
+    t.integer  "post_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.binary   "pic",        :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username",            :null => false
-    t.float    "rating",              :null => false
-    t.integer  "num_ratings",         :null => false
-    t.string   "password_hash",       :null => false
-    t.string   "password_salt",       :null => false
-    t.binary    "avatar"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    
+    t.string   "username",      :null => false
+    t.float    "rating",        :null => false
+    t.integer  "num_ratings",   :null => false
+    t.string   "password_hash", :null => false
+    t.string   "password_salt", :null => false
+    t.binary   "avatar"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "voters", :force => true do |t|
-    t.string   "username", :null => false
-    t.integer  "user_id", :null => false
+    t.string   "username",   :null => false
+    t.integer  "user_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

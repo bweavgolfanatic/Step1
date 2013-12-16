@@ -39,7 +39,7 @@ class CommentsController < ActionController::Base
   end
 
   def comments
-    @post = Post.find(params[:post])
+    @post = Post.find_by_title(params[:post])
     comments = @post.comments
     cms = Hash.new
     comments.each do |comment|

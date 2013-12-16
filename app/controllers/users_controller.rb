@@ -32,6 +32,24 @@ class UsersController < ApplicationController
 #  end
 
 
+  def send_message
+    msg = Hash.new
+    @message = Message.new
+    @message.subject = params[:subjec]
+    @message.body = params[:body]
+    @message.sender = (User.find(session[:user_id]) if session[:user_id])
+    @message.recipient = User.find_by_username(params[:username])
+    if @message.save
+      msg["message"]="message sent"
+    else
+      msg["message"]="message not sent"
+    end
+    respond_to do |format|
+      format.json{render json: msg}
+    end
+  end
+
+
   def my_details
     dethash = Hash.new
     dethash["username"] = current_user.username
