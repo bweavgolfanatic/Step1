@@ -15,8 +15,8 @@ class MessagesController < ApplicationController
       @msg = Message.new
       @msg.body = params[:body]
       @msg.subject = params[:subject]
-      @msg.sender = (User.find(session[:user_id]) if session[:user_id]).username
-      @msg.recipient = User.find_by_username(params[:recipient]).username
+      @msg.sender = (User.find(session[:user_id]) if session[:user_id]).id
+      @msg.recipient = User.find_by_username(params[:recipient]).id
       if @msg.save
         hsh['message']="success"
       else
@@ -29,7 +29,7 @@ class MessagesController < ApplicationController
   end
 
   def my_messages
-    @messages = Message.where("recipient = ?",User.find(session[:user_id]).username).all
+    @messages = Message.where("recipient = ?",session[:user_id]).all
     puts @messages
     respond_to do |format|
       format.json {render json: @messages}
@@ -41,7 +41,7 @@ class MessagesController < ApplicationController
     @message = Message.find_by_body(params[:body])
     msg['body']= @message.body
     msg['subject']=@message.subject
-    msg['sender']=@message.sender.username
+    msg['sender']=@message.sender
     respond_to do |format|
       format.json {render json: msg}
     end
