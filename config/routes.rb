@@ -13,7 +13,7 @@ Step1::Application.routes.draw do
   get "oldest_posts" => "posts#oldest", :as => "oldest_posts"
   get "category_posts" => "posts#category_posts", :as => "category_posts"
   get "post_comments" => "comments#comments", :as => "post_comments"
-  get "step_comments" => "step_comments#comments", :as => "step_comments"
+  get "get_step_comments" => "step_comments#get_step_comments", :as => "get_step_comments"
   get "am_i_signed_in" => "sessions#am_i_signed_in", :as => "am_i_signed_in"
   get "rate_comment" => "comments#rate_comment", :as => "rate_comment"
   get "rate_step_comment" => "step_comments#rate_step_comment", :as => "rate_step_comment"

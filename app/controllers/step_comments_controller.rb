@@ -38,7 +38,7 @@ class Step_commentsController < ActionController::Base
 
   end
 
-  def comments
+  def get_step_comments
     @step = Step.find(params[:step].to_i)
     comments = @step.comments
     respond_to do |format|
