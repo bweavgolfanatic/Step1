@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(:version => 20131216045018) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  :recipient
+    t.string  :recipient
     t.string   :subject
     t.string   :body
-    t.integer  :sender
+    t.string  :sender
   end
 
   create_table "posts", :force => true do |t|
