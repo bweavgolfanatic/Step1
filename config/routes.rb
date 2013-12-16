@@ -1,12 +1,6 @@
 Step1::Application.routes.draw do
 
-  resources :users do
-             resources :messages do
-               collection do
-                 post :delete_selected
-               end
-             end
-           end
+
 
   root :to => "users#new"
 
@@ -30,7 +24,7 @@ Step1::Application.routes.draw do
   get "getapost" => "posts#getapost", :as => "getapost"
   get "setfinished" => "posts#setfinished", :as => "setfinished"
   get "search_posts" => "posts#search_posts", :as => "search_posts"
-  post "send_message" => "users#send_message", :as => "send_message"
+  post "send_message" => "messages#send_message", :as => "send_message"
   get "my_messages" => "users#my_messages", :as => "my_messages"
   get "new_ms" => "users#new_ms", :as => "new_ms"
 

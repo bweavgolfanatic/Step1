@@ -32,49 +32,7 @@ class UsersController < ApplicationController
 #  end
 
 
-  def send_message
-    msg = Hash.new
-    @message = Message.new
-    @message.subject = params[:subject]
-    @message.body = params[:body]
-    @message.sender = (User.find(session[:user_id]) if session[:user_id])
-    @message.recipient = User.find_by_username(params[:username])
-    puts @message.recipient
-    puts @message
-    puts @message.body
-
-    if @message.save
-      puts @message
-      puts "WHYYYYY"
-      msg["message"]="message sent"
-    else
-      msg["message"]="message not sent"
-    end
-    respond_to do |format|
-      format.json{render json: msg}
-    end
-  end
-
-  def my_messages
-    @user = (User.find(session[:user_id]) if session[:user_id])
-    @messages = @user.received_messages
-    puts @messages.length
-    
-    respond_to do |format|
-      format.json{render json: @messages}
-    end
-
-  end
-
-  def new_ms
-    msg = Hash.new
-    @user = (User.find(session[:user_id]) if session[:user_id])
-    msg['new_messages_count']=@user.unread_messages_count
-    respond_to do |format|
-      format.json{render json: msg}
-    end
-  end
-
+  
 
   def my_details
     dethash = Hash.new

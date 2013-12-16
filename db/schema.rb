@@ -24,15 +24,10 @@ ActiveRecord::Schema.define(:version => 20131216045018) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.boolean  "sender_deleted",    :default => false
-    t.boolean  "recipient_deleted", :default => false
-    t.string   "subject"
-    t.text     "body"
-    t.datetime "read_at"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.integer  :recipient
+    t.string   :subject
+    t.string   :body
+    t.integer  :sender
   end
 
   create_table "posts", :force => true do |t|
