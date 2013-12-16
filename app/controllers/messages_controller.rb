@@ -1,11 +1,21 @@
 class MessagesController < ApplicationController
 
   def send_message
-      msg = Message.new
-      msg.body = params[:body]
-      msg.sender = (User.find(session[:user_id]) if session[:user_id]).id
-      msg.user_id = User.find_by_username(params[:recipient]).id
-      msg.save
+      hsh = Hash.new
+      @msg = Message.new
+      @msg.body = params[:body]
+      @msg.subject = params[:subject]
+      @msg.sender = (User.find(session[:user_id]) if session[:user_id]).id
+      @msg.recipient = User.find_by_username(params[:recipient]).id
+      if @msg.save
+        hsh['message']="success"
+      else
+        hsh['message']="failure"
+      end
+      respond_to do |format|
+          format.json {render json: hsh}
+      end
+
   end
 
   def my_messages
