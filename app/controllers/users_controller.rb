@@ -39,7 +39,13 @@ class UsersController < ApplicationController
     @message.body = params[:body]
     @message.sender = (User.find(session[:user_id]) if session[:user_id])
     @message.recipient = User.find_by_username(params[:username])
+    puts @message.recipient
+    puts @message
+    puts @message.body
+
     if @message.save
+      puts @message
+      puts "WHYYYYY"
       msg["message"]="message sent"
     else
       msg["message"]="message not sent"
