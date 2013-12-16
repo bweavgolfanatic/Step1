@@ -50,13 +50,11 @@ class UsersController < ApplicationController
   end
 
   def my_messages
-    @message =  Message.first
     @user = (User.find(session[:user_id]) if session[:user_id])
-    puts @user
-    puts @user.received_messages
+    @messages = @user.received_messages
     
     respond_to do |format|
-      format.json{render json: @message}
+      format.json{render json: @messages}
     end
 
   end
@@ -64,7 +62,7 @@ class UsersController < ApplicationController
   def new_ms
     msg = Hash.new
     @user = (User.find(session[:user_id]) if session[:user_id])
-    msg['new_messages_count']=@user.unread_message_count
+    msg['new_messages_count']=@user.unread_messages_count
     respond_to do |format|
       format.json{render json: msg}
     end
