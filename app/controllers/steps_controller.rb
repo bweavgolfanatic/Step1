@@ -16,8 +16,11 @@ class StepsController < ActionController::Base
     hsh = Hash.new
     hsh['picture']= @step.pic
     hsh['text'] = @step.text
-    hsh['next_step_id'] = Step.where("post_id = ? AND id > ?", @step.post_id, @step.id).order("id ASC").first.id
-
+    if !Step.where("post_id = ? AND id > ?", @step.post_id, @step.id).order("id ASC").first.id.nil?
+      hsh['next_step_id'] = Step.where("post_id = ? AND id > ?", @step.post_id, @step.id).order("id ASC").first.id
+    else
+      hsh['next_step_id'] = -5
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: hsh }
