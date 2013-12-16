@@ -27,6 +27,7 @@ Step1::Application.routes.draw do
   post "send_message" => "messages#send_message", :as => "send_message"
   get "my_messages" => "messages#my_messages", :as => "my_messages"
   get "get_email" => "messages#get_email", :as => "get_email"
+  get "user_details" => "users#user_details", :as => "user_details"
 
 
 

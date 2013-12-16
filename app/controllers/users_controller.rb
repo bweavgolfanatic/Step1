@@ -46,6 +46,18 @@ class UsersController < ApplicationController
 
   end
 
+  def user_details
+    dethash = Hash.new
+    @user = User.find_by_username(params[:username])
+    dethash["rating"] = @user.rating.to_s
+    dethash["numposts"] = @user.posts.count
+
+    respond_to do |format|
+      format.json{render json: dethash}
+    end
+
+  end
+
   def create
     if current_user.nil?
       @user = User.new(params[:user])
