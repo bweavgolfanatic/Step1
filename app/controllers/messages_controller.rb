@@ -1,6 +1,9 @@
 class MessagesController < ApplicationController
 
   def send_message
+    puts params[:body]
+    puts params[:subject]
+    puts params[:recipient]
       hsh = Hash.new
       @msg = Message.new
       @msg.body = params[:body]
