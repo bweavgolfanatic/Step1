@@ -94,7 +94,7 @@ class PostsController < ActionController::Base
   def rate_post
     @post = Post.find_by_title(params[:post])
     value = @post.rating * @post.num_ratings
-    value += params[:rating]
+    value += params[:rating].to_i
     @post.num_ratings += 1
     @post.rating = value / @post.num_ratings
     respond_to do |format|
