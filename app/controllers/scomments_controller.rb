@@ -42,7 +42,7 @@ class ScommentsController < ActionController::Base
 
   def get_step_comments
     @step = Step.find(params[:step].to_i)
-    comments = @step.comments
+    comments = @step.scomments
     respond_to do |format|
       format.json { render json: comments}
     end
