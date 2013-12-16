@@ -50,7 +50,6 @@ class UsersController < ApplicationController
   end
 
   def my_messages
-    msg = Hash.new
     @user = (User.find(session[:user_id]) if session[:user_id])
     @messages = @user.received_messages
     

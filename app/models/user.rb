@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :step_comments
   has_one :voter
+  has_private_messages
   attr_accessor :password
   before_save :encrypt_password
   after_save :make_voter
