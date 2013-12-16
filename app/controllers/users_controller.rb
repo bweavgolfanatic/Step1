@@ -49,6 +49,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def my_messages
+    msg = Hash.new
+    @user = (User.find(session[:user_id]) if session[:user_id])
+    @messages = @user.received_messages
+    
+    respond_to do |format|
+      format.json{render json: @messages}
+    end
+
+  end
+
+  def new_ms
+    msg = Hash.new
+    @user = (User.find(session[:user_id]) if session[:user_id])
+    msg['new_messages_count']=@user.unread_messages_count
+    respond_to do |format|
+      format.json{render json: msg}
+    end
+  end
+
 
   def my_details
     dethash = Hash.new
