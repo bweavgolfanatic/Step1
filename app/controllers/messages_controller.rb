@@ -39,7 +39,12 @@ class MessagesController < ApplicationController
   def get_email
     msg = Hash.new
     @message = Message.find_by_body(params[:body])
-    
+    msg['body']= @message.body
+    msg['subject']=@message.subject
+    msg['sender']=@message.sender
+    respond_to do |format|
+      format.json {render json: msg}
+    end
   end
 
 end
