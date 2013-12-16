@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def send_message
     msg = Hash.new
     @message = Message.new
-    @message.subject = params[:subjec]
+    @message.subject = params[:subject]
     @message.body = params[:body]
     @message.sender = (User.find(session[:user_id]) if session[:user_id])
     @message.recipient = User.find_by_username(params[:username])
