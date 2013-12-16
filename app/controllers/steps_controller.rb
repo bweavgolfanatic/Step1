@@ -13,11 +13,16 @@ class StepsController < ActionController::Base
 
   def show
     @step = Step.find(params[:id])
+    puts @step.id
+    puts @step.post_id
+    puts @step.text
+
     hsh = Hash.new
     hsh['picture']= @step.pic
     hsh['text'] = @step.text
-    if !Step.where("post_id = ? AND id > ?", @step.post_id, @step.id).order("id ASC").first.id.nil?
-      hsh['next_step_id'] = Step.where("post_id = ? AND id > ?", @step.post_id, @step.id).order("id ASC").first.id
+    @stepps = Step.where("post_id = ? AND id > ?", @step.post_id, @step.id).order("id ASC")
+    if !@stepps.nil? and !@stepps[0].nil?
+      hsh['next_step_id'] = @stepps[0].id
     else
       hsh['next_step_id'] = -5
     end
