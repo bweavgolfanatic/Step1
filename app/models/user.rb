@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :password, :password_confirmation, :rating, :avatar, :num_ratings
   has_many :posts
   has_many :comments
-  has_many :step_comments
+  has_many :scomments
   has_one :voter
   has_private_messages
   attr_accessor :password

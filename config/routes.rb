@@ -1,5 +1,13 @@
 Step1::Application.routes.draw do
 
+  resources :users do
+             resources :messages do
+               collection do
+                 post :delete_selected
+               end
+             end
+           end
+
   root :to => "users#new"
 
   get "log_out" => "sessions#destroy", :as => "log_out"
@@ -13,10 +21,10 @@ Step1::Application.routes.draw do
   get "oldest_posts" => "posts#oldest", :as => "oldest_posts"
   get "category_posts" => "posts#category_posts", :as => "category_posts"
   get "post_comments" => "comments#comments", :as => "post_comments"
-  get "get_step_comments" => "step_comments#get_step_comments", :as => "get_step_comments"
+  get "get_step_comments" => "scomments#get_step_comments", :as => "get_step_comments"
   get "am_i_signed_in" => "sessions#am_i_signed_in", :as => "am_i_signed_in"
   get "rate_comment" => "comments#rate_comment", :as => "rate_comment"
-  get "rate_step_comment" => "step_comments#rate_step_comment", :as => "rate_step_comment"
+  get "rate_step_comment" => "scomments#rate_step_comment", :as => "rate_step_comment"
   get "rate_post" => "posts#rate_post", :as => "rate_post"
   get "posts/:ispublic/:category/:title/:difficulty" => "posts#create"
   get "getapost" => "posts#getapost", :as => "getapost"
@@ -34,7 +42,7 @@ Step1::Application.routes.draw do
   resources :comments
   resources :posts
   resources :steps
-  resources :step_comments
+  resources :scomments
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

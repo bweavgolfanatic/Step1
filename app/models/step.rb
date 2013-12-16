@@ -4,7 +4,7 @@ class Step < ActiveRecord::Base
   validates :post_id, presence: true
   validates :text, presence: true
   validates :pic, presence: true
-  has_many :step_comments
+  has_many :scomments
   belongs_to :post
 
 end

@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20131216045018) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "step_comments", :force => true do |t|
+  create_table "scomments", :force => true do |t|
     t.string   "text",        :null => false
     t.integer  "rating",      :null => false
     t.integer  "num_ratings", :null => false

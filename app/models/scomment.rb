@@ -1,4 +1,4 @@
-class StepComment < ActiveRecord::Base
+class Scomment < ActiveRecord::Base
   attr_accessible :rating, :step_id, :text, :user_id, :num_ratings
 
   validates :step_id, presence: true

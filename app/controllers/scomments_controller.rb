@@ -1,10 +1,10 @@
-class StepCommentsController < ActionController::Base
+class ScommentsController < ActionController::Base
   def new
-    @step_comment = Step_comment.new
+    @step_comment = Scomment.new
   end
 
   def create
-    @step_comment = Step_comment.new
+    @step_comment = Scomment.new
     @step_comment.text = params[:text]
     @step_comment.step_id = params[:step_id]
     @step_comment.rating = 0.0
@@ -20,7 +20,7 @@ class StepCommentsController < ActionController::Base
   end
 
   def rate_step_comment
-    @comment = Step_comment.find(params[:Step_comment])
+    @comment = Scomment.find(params[:scomment])
     value = @comment.rating * @comment.num_ratings
     value += params[:rating]
     @comment.num_ratings += 1
