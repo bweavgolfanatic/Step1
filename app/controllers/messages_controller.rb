@@ -36,5 +36,11 @@ class MessagesController < ApplicationController
     end
   end
 
+  def get_email
+    msg = Hash.new
+    @message = Message.find_by_body(params[:body])
+    
+  end
+
 end
 
