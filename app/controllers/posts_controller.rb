@@ -94,16 +94,17 @@ class PostsController < ActionController::Base
 
   def rate_post
     @post = Post.find_by_title(params[:post])
-    value = @post.rating * @post.num_ratings
-    value += params[:rating].to_i
+    @value = @post.rating * @post.num_ratings
+    @value += params[:rating].to_i
     @post.num_ratings += 1
     @post.rating = value / @post.num_ratings
     respond_to do |format|
       if @post.save
         @votee = User.find(@post.user_id)
-        total = @votee.rating * @votee.num_ratings
+        @total = @votee.rating * @votee.num_ratings
+        @total += value
         @votee.num_ratings += 1
-        @votee.rating = total / @votee.num_ratings
+        @votee.rating = @total / @votee.num_ratings
         @votee.save
         format.json { render json: "{'message':'post rated successfully'}"}
       else
