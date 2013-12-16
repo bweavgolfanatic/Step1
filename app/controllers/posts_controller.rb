@@ -43,7 +43,7 @@ class PostsController < ActionController::Base
   def getapost
     msg = Hash.new
     @post = Post.find_by_title(params[:title])
-    msg['creator']=User.find(@post.user_id)
+    msg['creator']=User.find(@post.user_id).username
     msg['difficulty']=@post.difficulty
     msg['rating']=@post.rating
     msg['title']=@post.title
