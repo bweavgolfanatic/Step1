@@ -4,7 +4,9 @@ class Step_commentsController < ActionController::Base
   end
 
   def create
-    @step_comment = Step_comment.new(params[:step_comment])
+    @step_comment = Step_comment.new
+    @step_comment.text = params[:text]
+    @step_comment.step_id = params[:step_id]
     @step_comment.rating = 0.0
     @step_comment.num_ratings = 0
     @step_comment.user_id = (User.find(session[:user_id]) if session[:user_id]).id
