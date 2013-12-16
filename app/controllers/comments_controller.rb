@@ -9,7 +9,7 @@ class CommentsController < ActionController::Base
     @comment.post_id = Post.find_by_title(params[:post_title]).id
     @comment.num_ratings = 0
     @comment.rating = 0.0
-    @comment.user_id = current_user.id
+    @comment.user_id = (User.find(session[:user_id]) if session[:user_id]).id
     respond_to do |format|
       if @comment.save
         format.json { render json: "{'message':'comment created successfully'}"}

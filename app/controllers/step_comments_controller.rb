@@ -7,7 +7,7 @@ class Step_commentsController < ActionController::Base
     @step_comment = Step_comment.new(params[:step_comment])
     @step_comment.rating = 0.0
     @step_comment.num_ratings = 0
-    @step_comment.user_id = current_user.id
+    @step_comment.user_id = (User.find(session[:user_id]) if session[:user_id]).id
     respond_to do |format|
       if @step_comment.save
         format.json { render json: "{'message':'step comment created successfully'}"}
