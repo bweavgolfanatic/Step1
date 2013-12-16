@@ -16,7 +16,7 @@ class StepsController < ActionController::Base
     hsh = Hash.new
     hsh['picture']= @step.pic
     hsh['text'] = @step.text
-    hsh['next_step_id'] = Step.where("post_id = ? AND id > ?", @step.post_id, @step.id).order("id ASC").first
+    hsh['next_step_id'] = Step.where("post_id = ? AND id > ?", @step.post_id, @step.id).order("id ASC").first.id
 
     respond_to do |format|
       format.html # show.html.erb
