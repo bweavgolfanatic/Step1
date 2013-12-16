@@ -41,7 +41,7 @@ class MessagesController < ApplicationController
     @message = Message.find_by_body(params[:body])
     msg['body']= @message.body
     msg['subject']=@message.subject
-    msg['sender']=User.find(@message.sender).nickname
+    msg['sender']=User.find(@message.sender).username
     respond_to do |format|
       format.json {render json: msg}
     end
